@@ -57,6 +57,12 @@ app = create_app()
 gunicorn -w 4 wsgi:app
 ```
 
+or
+
+```
+gunicorn --bind 0.0.0.0:8000 -w 4 --timeout 36000 wsgi:app
+```
+
 4. Set up a production database, such as PostgreSQL or MySQL, and configure the app to use it instead of SQLite.
 
 # Credits
