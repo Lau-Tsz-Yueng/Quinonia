@@ -48,16 +48,10 @@ def create_app():
             conn.commit()
         return redirect(url_for('index'))
 
-    @app.route('/post/<int:post_id>')
-    def post(post_id):
-        db = get_db()
-        cursor = db.execute('SELECT * FROM posts WHERE id = ?', (post_id,))
-        thread = cursor.fetchone()
+    @app.route('/new_page')
+    def new_page():
+        return render_template('new_page.html')
 
-        if thread is None:
-            return render_template('not_found.html'), 404
-        else:
-            return render_template('post.html', post=thread)
 
     def cleanup_database():
         if os.path.exists(DATABASE):
